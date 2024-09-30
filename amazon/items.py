@@ -15,3 +15,4 @@ class AmazonScraperItem(scrapy.Item):
     # h_interface = scrapy.Field()
     # special_features = scrapy.Field()
     # speed = scrapy.Field()
+    product_details = scrapy.Field()

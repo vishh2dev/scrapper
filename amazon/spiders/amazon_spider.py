@@ -49,7 +49,15 @@ class AmazonSpiderSpider(scrapy.Spider):
         # object['h_interface'] = table[2].css('td.a-span9 span ::text').get()
         # object['special_features'] = table[3].css('td.a-span9 span ::text').get()
         # object['speed'] = table[4].css('td.a-span9 span ::text').get()
-        
+        product_details = {}
+        details = response.css('div.a-fixed-left-grid.product-facts-detail')
+        for detail in details:
+            key = detail.css('div.a-col-left span span ::text').get(default='').strip()
+            value = detail.css('div.a-col-right span span ::text').get(default='').strip()
+            if key and value:
+                product_details[key] = value
+
+        object['product_details'] = product_details
         yield object
 
         
